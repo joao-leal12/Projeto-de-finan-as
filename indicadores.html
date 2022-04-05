@@ -13,10 +13,10 @@
 
     <!-- Font Awesome -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-    
+
 	</head>
 
-  <body onload="mostrarConsultas()">
+  <body >
 
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5">
@@ -30,27 +30,26 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
+            <li class="nav-item active">
               <a class="nav-link" href="index.html">Cadastro</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="consulta.html">Consulta</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="indicadores.html">Indicadores</a>
-          </li>
-          
-          
-          </ul>
+                <a class="nav-link" href="indicadores.html">Indicadores</a>
+            </li>
+        
+        </ul>
           
         </div>
       </div>
     </nav>
 
     <div class="container">
-      <div class="row mb-5">
-        <div class="col">
-          <h1 class="display-4">Consulta de despesas</h1>
+      <div class="row">
+        <div class="col mb-5">
+          <h1 class="display-4">Indicadores por opção</h1>
         </div>
       </div>
 
@@ -96,7 +95,7 @@
         </div>
       </div>
 
-      <div class="row  mb-5">
+      <div class="row">
         <div class="col-md-8">
           <input type="text" class="form-control" placeholder="Descrição" id="descricao" />
         </div>
@@ -106,32 +105,33 @@
         </div>
 
         <div class="col-md-2 d-flex justify-content-end">
-          <button type="button"  onclick="filtrandoDespesas()"   class="btn btn-primary">
-            <i class="fas fa-search"></i>
+          <button type="button" class="btn btn-primary" onclick="mostrarSomador()">
+            <i class="fas fa-plus"></i>
           </button>
         </div>
       </div>
+    </div>
 
-      <div class="row">
-        <div class="col">
-          <table class="table" >
-            <thead>
-              <tr>
-                <th>Data</th>
-                <th>Tipo</th>
-                <th>Descrição</th>
-                <th>Valor</th>
-                <th></th>
-              </tr>
+    <div class="row justify-content-center">
+        <div class="col-md-10 ">
+          <table class="table " >
+            <thead  id="head">
+              <tr id="linha">
+                <th>Janeiro</th>
+                <th>Fevereiro</th>
+                <th>Março </th>
+                <th>Abril</th>
+                <th>Maio</th>
+              </tr>  
             </thead>
-
-            <tbody id="listasDespesas">
+            <tbody id="listasIndicadores">
+                <!--Colocar aqui o resultado-->
             </tbody>
           </table>
         </div>  
       </div>
-    </div>
-  
+    </div>  
+
     <div class="modal fade" id="mostrarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -146,13 +146,12 @@
           </div>
           <div class="modal-footer">
             
-            <button type="button" class="btn" id="botao" data-dismiss="modal" onclick="mostrarModalExclusao()">Voltar</button>
+            <button type="button" class="btn" id="botao" data-dismiss="modal">Voltar</button>
           </div>
         </div>
       </div>
     </div>
-    
     <script src="js/app.js"></script>
-  </body>	
+</body>	
 
 </html>

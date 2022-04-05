@@ -140,6 +140,36 @@ class Auxiliar {
     }
 
 
+    filtrarDados(despesa){
+    
+           let soma = 0 
+        let filtro = []; 
+
+        filtro = this.recuperarRegistros()
+            if(despesa.mes != ''){
+            filtro.filter( a => {
+
+                if(a.mes == despesa.mes){
+
+                    soma += parseInt(a.valor); 
+                    console.log(soma); 
+                }
+            
+
+
+            })
+
+            
+            return soma; 
+            
+            
+        }
+       
+        return filtro; 
+    }
+         
+     
+
 }
 
 class Despesas {
@@ -286,13 +316,29 @@ function mostrarConsultas(despesa = Array(), filtro = false  ) {
 
        btn.onclick = function () {
 
-         let id = this.id.replace('inset_', ''); 
+        let id = this.id.replace('inset_', '');
 
+            $('#mostrarModal').modal('show') 
+            document.getElementById('botao').className = 'btn btn-danger';
+            document.getElementById('botao').innerHTML = 'Voltar'; 
+            document.getElementById('exampleModalLabel').className = 'text-danger';
+            document.getElementById('exampleModalLabel').innerHTML = 'Registro excluido com sucesso';
+            document.getElementById('body').innerHTML = 'Despesa Excluida com sucesso';
           
+            
             auxiliar.removeItem(id); 
 
-            window.location.reload()
-       }
+              
+            
+
+            
+
+           
+            
+
+
+                    
+        }
        linha.insertCell(4).append(btn); 
     
     
@@ -320,11 +366,124 @@ function filtrandoDespesas() {
 
         console.log(despesasFiltro); 
 
+
+   
     mostrarConsultas(despesasFiltro, true  ); 
 
 
 };
 
 
+
+
+function mostrarModalExclusao() {
+
+
+     window.location.reload()
+
+
+}; 
+
+
+
+function FiltrarSomar() {
+    let ano  = document.getElementById("ano")
+	let mes = document.getElementById("mes")
+	let dia = document.getElementById("dia")
+	let tipo = document.getElementById("tipo")
+	let descricao = document.getElementById("descricao")
+	let valor = document.getElementById("valor")
+    
+
+
+        let despesa = new Despesas(ano.value, mes.value, dia.value, tipo.value, descricao.value, valor.value); 
+
+
+      let somador = auxiliar.filtrarDados(despesa)
+  
+
+        return somador; 
+
+    }
+
+
+
+
+    function mostrarSomador(){
+       
+        let ano  = document.getElementById("ano")
+        let mes = document.getElementById("mes")
+        let dia = document.getElementById("dia")
+        let tipo = document.getElementById("tipo")
+        let descricao = document.getElementById("descricao")
+        let valor = document.getElementById("valor")
+        
+
+    
+            let despesa = new Despesas(ano.value, mes.value, dia.value, tipo.value, descricao.value, valor.value); 
+    
+        
+            
+        let resposta = FiltrarSomar();
+        let indicador = document.getElementById('listasIndicadores'); 
+
+          linha = indicador.insertRow()
+        if(despesa.mes == '1'){ 
+
+            linha.insertCell(0).innerHTML = resposta; 
+
+
+
+        }else if(despesa.mes == '2'){
+           
+            linha.insertCell(0).innerHTML = ''
+
+            linha.insertCell(1).innerHTML = resposta; 
+        }else if(despesa.mes == '3'){
+
+            linha.insertCell(0).innerHTML = ''
+            linha.insertCell(1).innerHTML = ''
+            linha.insertCell(2).innerHTML = resposta
+            
+
+        }else if(despesa.mes =='4'){
+
+            linha.insertCell(0).innerHTML = ''
+            linha.insertCell(1).innerHTML = ''
+            linha.insertCell(2).innerHTML = ''
+            linha.insertCell(3).innerHTML = resposta
+
+        }else if(despesa.mes == '5'){
+
+            linha.insertCell(0).innerHTML = ''
+            linha.insertCell(1).innerHTML = ''
+            linha.insertCell(2).innerHTML = ''
+            linha.insertCell(3).innerHTML = ''
+            linha.insertCell(4).innerHTML = resposta
+
+        }
+        
+           
+        
+          
+
+               
+
+           
+
+           
+    }
+
+
+
+    
+    
+  
+
+    
+
+
+
+    
 
 
